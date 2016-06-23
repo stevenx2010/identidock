@@ -1,9 +1,22 @@
 from flask import Flask
 app = Flask(__name__)
+default_name = "Steven X"
 
 @app.route('/')
-def hello_word():
-    return "hello world"
+def mainpage():
+    name = default_name
+
+    header = '<html><header><title>Identidock</title></head><body>'
+    body = '''<form method="POST">
+              Hello <input type="text" name="name" value="{}">
+              <input type="submit" value="Submit">
+              </form>
+              <p>You look like a:
+              <img src="/monster/monster.png"/>
+           '''.format(name)
+    footer = '</body></html>'
+
+    return header + body + footer
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
